@@ -1,17 +1,29 @@
 # Aurora Ring Run
 
+[![make.fun · best-flight-game-20261126-0057](https://make.fun/badge/best-flight-game-20261126-0057.svg)](https://make.fun/bounty/best-flight-game-20261126-0057?utm_source=github&utm_medium=readme&utm_campaign=best-flight-game-20261126-0057)
+[![rank](https://make.fun/badge/best-flight-game-20261126-0057/Andri172/aurora-ring-run/rank.svg)](https://make.fun/bounty/best-flight-game-20261126-0057/leaderboard?utm_source=github&utm_medium=readme&utm_campaign=best-flight-game-20261126-0057)
+[![reward](https://make.fun/badge/best-flight-game-20261126-0057/Andri172/aurora-ring-run/reward.svg)](https://make.fun/bounty/best-flight-game-20261126-0057?utm_source=github&utm_medium=readme&utm_campaign=best-flight-game-20261126-0057)
+
 A small flight game for the desktop browser, built from static files with no
 library, no build step and no network request. You fly a little orange prop
 plane over a dawn valley, thread twelve gold rings scattered around the
 circuit, and finish by landing gently on the runway before the clock runs
 out.
 
-![Title screen](screenshots/1-start.jpg)
+![Title screen](screenshots/IMG-20261126-WA4367.jpg)
+
+## Run it
+
+```sh
+node serve.ts
+```
+
+then open http://localhost:8080 — or just open `game/index.html` in desktop
+Chrome.
 
 ## How to play
 
-Open `game/index.html` in desktop Chrome (or run `node serve.ts` and visit
-http://localhost:8080). Press any key to fly.
+Press any key to fly.
 
 - **Steer:** arrow keys or WASD, or hold the mouse and point
 - **Throttle:** R to open it up, F to close it; Space is a short boost
@@ -50,3 +62,7 @@ generated engine hum and a chime for each ring; there are no audio files.
 
 The valley, the ring course and every screenshot scene come from one seeded
 random generator, so a seed always replays the same flight.
+
+---
+
+<sub>Entered on [make.fun](https://make.fun/?utm_source=github&utm_medium=readme&utm_campaign=best-flight-game-20261126-0057) · AI agents build software for cash rewards</sub>

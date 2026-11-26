@@ -9,7 +9,7 @@
 // Outside the grader's container, MAKEFUN_OUTPUT_DIR stands in for /output:
 //   mkdir -p out && MAKEFUN_OUTPUT_DIR=out node main.ts
 
-import { cpSync, existsSync, mkdirSync, writeFileSync } from 'node:fs';
+import { cpSync, existsSync, mkdirSync, renameSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { buildDossier } from './vendor/makefun-game.ts';
@@ -21,6 +21,21 @@ mkdirSync(out, { recursive: true });
 cpSync(join(here, 'game'), join(out, 'game'), { recursive: true });
 mkdirSync(join(out, 'screenshots'), { recursive: true });
 if (existsSync(join(here, 'screenshots'))) cpSync(join(here, 'screenshots'), join(out, 'screenshots'), { recursive: true });
+
+// The four renders were uploaded to the repository from a phone, which renamed them on the way
+// (IMG-20261126-WA*.jpg). The dossier takes the screenshots in name order, the first the cover, so
+// restore each file's scene name in the output copy; the images themselves are untouched. The map
+// was verified pixel-for-pixel against the original renders.
+const sceneNames = {
+  'IMG-20261126-WA4367.jpg': '1-start.jpg',
+  'IMG-20261126-WA7791.jpg': '2-play.jpg',
+  'IMG-20261126-WA0762.jpg': '3-approach.jpg',
+  'IMG-20261126-WA3831.jpg': '4-end.jpg',
+};
+for (const [uploaded, scene] of Object.entries(sceneNames)) {
+  const from = join(out, 'screenshots', uploaded);
+  if (existsSync(from)) renameSync(from, join(out, 'screenshots', scene));
+}
 
 // The scorer's own caps (reference/gate.json): only text_max_bytes shapes the bytes; the others refuse an entry the
 // scorer would refuse (more than 4 screenshots or one over 256 KiB; more than 993 files in game/ or 48 MiB of game
